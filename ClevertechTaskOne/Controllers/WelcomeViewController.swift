@@ -50,6 +50,7 @@ class WelcomeViewController: UIViewController {
         button.layer.borderWidth = 2
         button.layer.borderColor = UIColor(named: "userInterfaceColor")?.cgColor
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(initiateLightMode), for: .touchUpInside)
         return button
     }()
     
@@ -61,6 +62,7 @@ class WelcomeViewController: UIViewController {
         button.layer.borderWidth = 2
         button.layer.borderColor = UIColor(named: "userInterfaceColor")?.cgColor
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(initiateDarkMode), for: .touchUpInside)
         return button
     }()
     
@@ -68,10 +70,11 @@ class WelcomeViewController: UIViewController {
         let button = UIButton()
         button.backgroundColor = .clear
         button.setImage(UIImage(systemName: "clock.arrow.2.circlepath"), for: .normal)
-        button.tintColor = UIColor(named: "userInterfaceColor")
+        button.tintColor = .red
         button.layer.borderWidth = 2
         button.layer.borderColor = UIColor(named: "userInterfaceColor")?.cgColor
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(initiateDeviceMode), for: .touchUpInside)
         return button
     }()
     
@@ -183,6 +186,27 @@ class WelcomeViewController: UIViewController {
         languagePicker.delegate = self
         languagePicker.dataSource = self
         languagePicker.selectRow(1, inComponent: 0, animated: false)
+    }
+    
+    @objc private func initiateLightMode(sender: UIButton) {
+        overrideUserInterfaceStyle = .light
+        sender.tintColor = .red
+        darkModeButton.tintColor = UIColor(named: "userInterfaceColor")
+        autoModeButton.tintColor = UIColor(named: "userInterfaceColor")
+    }
+    
+    @objc private func initiateDarkMode(sender: UIButton) {
+        overrideUserInterfaceStyle = .dark
+        sender.tintColor = .red
+        lightModeButton.tintColor = UIColor(named: "userInterfaceColor")
+        autoModeButton.tintColor = UIColor(named: "userInterfaceColor")
+    }
+    
+    @objc private func initiateDeviceMode(sender: UIButton) {
+        overrideUserInterfaceStyle = .unspecified
+        sender.tintColor = .red
+        lightModeButton.tintColor = UIColor(named: "userInterfaceColor")
+        darkModeButton.tintColor = UIColor(named: "userInterfaceColor")
     }
 }
 
