@@ -9,7 +9,9 @@ import UIKit
 
 class WelcomeViewController: UIViewController {
     
-   let languageData = Languages()
+    let languageData = Languages()
+    
+//    MARK: - UIElements
     
     private let backgroundView: UIView = {
         let view = UIView()
@@ -34,43 +36,40 @@ class WelcomeViewController: UIViewController {
         return pickerView
     }()
     
-    private let lightModeButton: UIButton = {
+    private lazy var lightModeButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .clear
         button.setImage(UIImage(systemName: "sun.min.fill"), for: .normal)
         button.tintColor = UIColor(named: "userInterfaceColor")
         button.layer.borderWidth = 2
-        button.layer.borderColor = UIColor(named: "userInterfaceColor")?.cgColor
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(initiateLightMode), for: .touchUpInside)
         return button
     }()
     
-    private let darkModeButton: UIButton = {
+    private lazy var darkModeButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .clear
         button.setImage(UIImage(systemName: "moon.fill"), for: .normal)
         button.tintColor = UIColor(named: "userInterfaceColor")
         button.layer.borderWidth = 2
-        button.layer.borderColor = UIColor(named: "userInterfaceColor")?.cgColor
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(initiateDarkMode), for: .touchUpInside)
         return button
     }()
     
-    private let autoModeButton: UIButton = {
+    private lazy var autoModeButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .clear
         button.setImage(UIImage(systemName: "clock.arrow.2.circlepath"), for: .normal)
         button.tintColor = .red
         button.layer.borderWidth = 2
-        button.layer.borderColor = UIColor(named: "userInterfaceColor")?.cgColor
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(initiateDeviceMode), for: .touchUpInside)
         return button
     }()
     
-//    MARK: - viewDidLoad
+    //    MARK: - viewDidLoad
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,7 +79,7 @@ class WelcomeViewController: UIViewController {
         configureLanguagePickerView()
     }
     
-//    MARK: - viewDidLayoutSubviews
+    //    MARK: - viewDidLayoutSubviews
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -88,7 +87,7 @@ class WelcomeViewController: UIViewController {
         setCornerRadius()
     }
     
-//    MARK: - traitCollectionDidChange
+    //    MARK: - traitCollectionDidChange
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
@@ -104,6 +103,8 @@ class WelcomeViewController: UIViewController {
         view.addSubview(darkModeButton)
         view.addSubview(autoModeButton)
     }
+    
+//    MARK: - setConstraints
     
     private func setConstraints() {
         let backgroundViewContraints = [
@@ -172,6 +173,8 @@ class WelcomeViewController: UIViewController {
         languagePicker.dataSource = self
     }
     
+//    MARK: - Actions
+    
     @objc private func initiateLightMode(sender: UIButton) {
         overrideUserInterfaceStyle = .light
         sender.tintColor = .red
@@ -217,6 +220,5 @@ extension WelcomeViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         let languageName = languageData.languages[row]
         welcomeLabel.text = languageName.welcomeTitle
-        
     }
 }
