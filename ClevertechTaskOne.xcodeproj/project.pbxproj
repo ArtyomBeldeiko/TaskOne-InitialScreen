@@ -12,6 +12,8 @@
 		39F1B04E29413CE1008258BF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 39F1B04D29413CE1008258BF /* Assets.xcassets */; };
 		39F1B05129413CE1008258BF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39F1B04F29413CE1008258BF /* LaunchScreen.storyboard */; };
 		39F1B05A29413EA5008258BF /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F1B05929413EA5008258BF /* WelcomeViewController.swift */; };
+		39F1B05F29432CE4008258BF /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F1B05E29432CE4008258BF /* Language.swift */; };
+		39F1B06129432E4F008258BF /* Languages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F1B06029432E4F008258BF /* Languages.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		39F1B05029413CE1008258BF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		39F1B05229413CE1008258BF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		39F1B05929413EA5008258BF /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
+		39F1B05E29432CE4008258BF /* Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
+		39F1B06029432E4F008258BF /* Languages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Languages.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +60,7 @@
 			children = (
 				39F1B05829413E8D008258BF /* Application */,
 				39F1B05B29413EB5008258BF /* Controllers */,
+				39F1B05D29432CBE008258BF /* Models */,
 				39F1B05C29413ECB008258BF /* Resources */,
 			);
 			path = ClevertechTaskOne;
@@ -86,6 +91,15 @@
 				39F1B05229413CE1008258BF /* Info.plist */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		39F1B05D29432CBE008258BF /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				39F1B05E29432CE4008258BF /* Language.swift */,
+				39F1B06029432E4F008258BF /* Languages.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -159,8 +173,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				39F1B05A29413EA5008258BF /* WelcomeViewController.swift in Sources */,
+				39F1B05F29432CE4008258BF /* Language.swift in Sources */,
 				39F1B04529413CE0008258BF /* AppDelegate.swift in Sources */,
 				39F1B04729413CE0008258BF /* SceneDelegate.swift in Sources */,
+				39F1B06129432E4F008258BF /* Languages.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

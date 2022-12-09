@@ -9,6 +9,8 @@ import UIKit
 
 class WelcomeViewController: UIViewController {
     
+   let languageData = Languages()
+    
     private let backgroundView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor(named: "backgroundColor")
@@ -20,16 +22,6 @@ class WelcomeViewController: UIViewController {
         let label = UILabel()
         label.textColor = UIColor(named: "userInterfaceColor")
         label.font = .systemFont(ofSize: 32, weight: .medium)
-        label.text = "Hello"
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
-    private let chooseLanguageLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = UIColor(named: "userInterfaceColor")
-        label.font = .systemFont(ofSize: 18, weight: .medium)
-        label.text = "Choose your language"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -107,7 +99,6 @@ class WelcomeViewController: UIViewController {
     private func setView() {
         view.addSubview(backgroundView)
         view.addSubview(welcomeLabel)
-        view.addSubview(chooseLanguageLabel)
         view.addSubview(languagePicker)
         view.addSubview(lightModeButton)
         view.addSubview(darkModeButton)
@@ -134,11 +125,6 @@ class WelcomeViewController: UIViewController {
             languagePicker.centerXAnchor.constraint(equalTo: self.view.centerXAnchor)
         ]
         
-        let chooseLanguageLabelConstraints = [
-            chooseLanguageLabel.bottomAnchor.constraint(equalTo: languagePicker.topAnchor, constant: 10),
-            chooseLanguageLabel.leadingAnchor.constraint(equalTo: languagePicker.leadingAnchor, constant: 8)
-        ]
-        
         let lightModeButtonConstraints = [
             lightModeButton.widthAnchor.constraint(equalToConstant: 50),
             lightModeButton.heightAnchor.constraint(equalToConstant: 50),
@@ -163,7 +149,6 @@ class WelcomeViewController: UIViewController {
         NSLayoutConstraint.activate(backgroundViewContraints)
         NSLayoutConstraint.activate(welcomeLabelContraints)
         NSLayoutConstraint.activate(languagePickerConstraints)
-        NSLayoutConstraint.activate(chooseLanguageLabelConstraints)
         NSLayoutConstraint.activate(lightModeButtonConstraints)
         NSLayoutConstraint.activate(darkModeButtonConstraints)
         NSLayoutConstraint.activate(autoModeButtonConstraints)
@@ -185,7 +170,6 @@ class WelcomeViewController: UIViewController {
     private func configureLanguagePickerView() {
         languagePicker.delegate = self
         languagePicker.dataSource = self
-        languagePicker.selectRow(1, inComponent: 0, animated: false)
     }
     
     @objc private func initiateLightMode(sender: UIButton) {
@@ -214,18 +198,25 @@ class WelcomeViewController: UIViewController {
 
 extension WelcomeViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        
         return 1
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return 3
+        return languageData.languages.count
     }
     
     func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
         return 40
     }
     
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        let languageName = languageData.languages[row]
+        return languageName.name
+    }
     
-    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        let languageName = languageData.languages[row]
+        welcomeLabel.text = languageName.welcomeTitle
+        
+    }
 }
