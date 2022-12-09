@@ -20,6 +20,13 @@ class WelcomeViewController: UIViewController {
         return view
     }()
     
+    private let logoView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "logo")
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    
     private let welcomeLabel: UILabel = {
         let label = UILabel()
         label.textColor = UIColor(named: "userInterfaceColor")
@@ -97,6 +104,7 @@ class WelcomeViewController: UIViewController {
     
     private func setView() {
         view.addSubview(backgroundView)
+        view.addSubview(logoView)
         view.addSubview(welcomeLabel)
         view.addSubview(languagePicker)
         view.addSubview(lightModeButton)
@@ -114,16 +122,17 @@ class WelcomeViewController: UIViewController {
             backgroundView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor)
         ]
         
-        let welcomeLabelContraints = [
-            welcomeLabel.bottomAnchor.constraint(equalTo: self.view.centerYAnchor, constant: -240),
-            welcomeLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor)
+        let logoViewConstraints = [
+            logoView.widthAnchor.constraint(equalToConstant: 120),
+            logoView.heightAnchor.constraint(equalToConstant: 120),
+            logoView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 70),
+            logoView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor)
         ]
         
-        let languagePickerConstraints = [
-            languagePicker.topAnchor.constraint(equalTo: self.view.centerYAnchor, constant: 15),
-            languagePicker.widthAnchor.constraint(equalTo: self.view.widthAnchor, constant: -100),
-            languagePicker.heightAnchor.constraint(equalToConstant: 150),
-            languagePicker.centerXAnchor.constraint(equalTo: self.view.centerXAnchor)
+        let welcomeLabelContraints = [
+            welcomeLabel.topAnchor.constraint(equalTo: logoView.bottomAnchor, constant: 30),
+            welcomeLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            welcomeLabel.heightAnchor.constraint(equalToConstant: 50)
         ]
         
         let lightModeButtonConstraints = [
@@ -147,12 +156,20 @@ class WelcomeViewController: UIViewController {
             autoModeButton.topAnchor.constraint(equalTo: darkModeButton.bottomAnchor, constant: 12)
         ]
         
+        let languagePickerConstraints = [
+            languagePicker.topAnchor.constraint(equalTo: autoModeButton.bottomAnchor, constant: 30),
+            languagePicker.widthAnchor.constraint(equalTo: self.view.widthAnchor, constant: -100),
+            languagePicker.heightAnchor.constraint(equalToConstant: 150),
+            languagePicker.centerXAnchor.constraint(equalTo: self.view.centerXAnchor)
+        ]
+        
         NSLayoutConstraint.activate(backgroundViewContraints)
+        NSLayoutConstraint.activate(logoViewConstraints)
         NSLayoutConstraint.activate(welcomeLabelContraints)
-        NSLayoutConstraint.activate(languagePickerConstraints)
         NSLayoutConstraint.activate(lightModeButtonConstraints)
         NSLayoutConstraint.activate(darkModeButtonConstraints)
         NSLayoutConstraint.activate(autoModeButtonConstraints)
+        NSLayoutConstraint.activate(languagePickerConstraints)
     }
     
     private func setBorderColor() {
